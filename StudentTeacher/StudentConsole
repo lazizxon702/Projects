@@ -1,0 +1,69 @@
+namespace StudentTeacher.Student;
+
+public abstract class StudentConsole
+{
+
+
+   
+    public static List<Student> GetStudents()
+    {
+        return
+        [
+            new Student
+            {
+                Id = 1, Name = "Ali Valiyev", CityId = 1, DateOfBirth = DateTime.Parse("2009.01.11"), Gender = "Erkak",
+                GradeLevel = 11, DepartmentId = 1, CreatedDate = DateTime.Now
+            },
+            new Student
+            {
+                Id = 2, Name = "Malika Karimova", CityId = 2, DateOfBirth =DateTime.Parse("2008.06.15"), Gender = "Ayol",
+                GradeLevel = 2, DepartmentId = 2, CreatedDate = DateTime.Now
+            },
+            new Student
+            {
+                Id = 3, Name = "Javohir Raxmatov", CityId = 3, DateOfBirth = DateTime.Parse("2008.07.07"),
+                Gender = "Erkak", GradeLevel = 3, DepartmentId = 3, CreatedDate = DateTime.Now
+            },
+            new Student
+            {
+                Id = 4, Name = "Zarina Toshpulatova", CityId = 4, DateOfBirth = DateTime.Parse("2007.11.29"),
+                Gender = "Ayol", GradeLevel = 10, DepartmentId = 1, CreatedDate = DateTime.Now
+            },
+            new Student
+            {
+                Id = 5, Name = "Islom Turgunov", CityId = 5, DateOfBirth = DateTime.Parse("2009.09.19"), Gender = "Erkak",
+                GradeLevel = 9, DepartmentId = 2, CreatedDate  = DateTime.Now
+            },
+            new Student
+            {
+                Id = 6, Name = "Dilnoza Mamajonova", CityId = 6, DateOfBirth =  DateTime.Parse("2007.04.17"),
+                Gender = "Ayol", GradeLevel = 11, DepartmentId = 3, CreatedDate = DateTime.Now
+            },
+            new Student
+            {
+                Id = 7, Name = "Bahodir Eshonqulov", CityId = 7, DateOfBirth = DateTime.Parse("2007.02.07"),
+                Gender = "Erkak", GradeLevel = 4, DepartmentId = 1, CreatedDate =  DateTime.Now
+            },
+            new Student
+            {
+                Id = 8, Name = "Gulnoza Abdullaeva", CityId = 8, DateOfBirth =  DateTime.Parse("2010.12.31") ,
+                Gender = "Ayol", GradeLevel = 11, DepartmentId = 2, CreatedDate = DateTime.Now
+            },
+            new Student
+            {
+                Id = 9, Name = "Sardor Yusupov", CityId = 9, DateOfBirth =  DateTime.Parse("2007.04.17"), Gender = "Erkak",
+                GradeLevel = 4, DepartmentId = 3, CreatedDate = DateTime.Now
+            },
+            new Student
+            {
+                Id = 10, Name = "Shahnoza Nurmatova", CityId = 10, DateOfBirth =  DateTime.Parse("2008.06.19"),
+                Gender = "Ayol", GradeLevel = 2, DepartmentId = 1, CreatedDate = DateTime.Now
+            }
+        ];
+    
+
+    
+}
+    
+    
+}
