@@ -1,0 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace StudentTeacher.others;
+
+public sealed class AppDbContext : DbContext
+ {
+    public AppDbContext()
+    {
+        Database.EnsureCreated();
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=demondb;Username=postgres;Password=1234");
+    }
+ }
