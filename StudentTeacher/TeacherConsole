@@ -1,0 +1,40 @@
+namespace StudentTeacher.Teacher;
+
+public abstract class TeacherConsole
+{
+    public static List<Teacher> GetTeachers()
+    {
+        return
+        [
+            new Teacher { Id = 1, Name = "Anvar Jo‘rayev", CityId = 1,
+                DateOfBirth = DateTime.Parse("1982.4.17"), Gender = "Erkak",  CreatedDate = DateTime.Now },
+            
+            new Teacher { Id = 2, Name = "Dilfuza Karimova", CityId = 2,
+                DateOfBirth =  DateTime.Parse("1982.4.17"), Gender = "Ayol",  CreatedDate = DateTime.Now  },
+            
+            new Teacher { Id = 3, Name = "Sardor Maxmudov", CityId = 3,
+                DateOfBirth =  DateTime.Parse("1982.4.17"), Gender = "Erkak",  CreatedDate = DateTime.Now },
+            
+            new Teacher { Id = 4, Name = "Gulchehra Ortiqova", CityId = 4,
+                DateOfBirth =  DateTime.Parse(" 1990.1.30 "), Gender = "Ayol",   CreatedDate = DateTime.Now },
+            
+            new Teacher { Id = 5, Name = "Jamshid Qodirov", CityId = 5,
+                DateOfBirth = DateTime.Parse("1982.4.17"), Gender = "Erkak",  CreatedDate = DateTime.Now },
+         
+            new Teacher { Id = 6, Name = "Nodira Asqarova", CityId = 6,
+                DateOfBirth =  DateTime.Parse("1982.4.17"), Gender = "Ayol",  CreatedDate = DateTime.Now  },
+            
+            new Teacher { Id = 7, Name = "Baxtiyor Yuldashev", CityId = 7,
+                DateOfBirth =  DateTime.Parse("1982.4.17"), Gender = "Erkak",  CreatedDate = DateTime.Now },
+            
+            new Teacher { Id = 8, Name = "Zulfiya Xo‘jamqulova", CityId = 8, 
+                DateOfBirth =  DateTime.Parse("1982.4.17"), Gender = "Ayol",  CreatedDate = DateTime.Now  },
+            
+            new Teacher { Id = 9, Name = "Farruh Bektemirov", CityId = 9,
+                DateOfBirth =  DateTime.Parse("1982.4.17"), Gender = "Erkak",  CreatedDate = DateTime.Now  },
+            
+            new Teacher { Id = 10, Name = "Mohira Ortiqova ", CityId = 10 ,
+                DateOfBirth =  DateTime.Parse("1982.4.17"), Gender = "Ayol",  CreatedDate = DateTime.Now  }
+        ];
+    }
+}
