@@ -1,159 +1,86 @@
+using Microsoft.EntityFrameworkCore;
 using StudentTeacher.others;
-using StudentTeacher.Student;
-using StudentTeacher.Teacher;
 
 namespace StudentTeacher;
-
+/// <summary>
+/// Program have some mistakes
+/// </summary>
 public abstract class Program
-  { 
-    
+  {
     public static void Main()
     {
-        var students = StudentConsole.GetStudents(); 
-        var teachers = TeacherConsole.GetTeachers();
-        var studentsSubjects = StudentsSubjectsConsole.GetStudentsSubjects();
+        var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseNpgsql("Host=localhost;Port=5432;Database=demondb;Username=postgres;Password=1234")
+            .Options;
 
-        var subjects = Subject.GetSubjects();
+        using var context = new AppDbContext(options);
 
-        menu:
-        Console.Write("\n   1. Student \n" +
-                      "   2. Teacher \n" +
-                      "   3. Students ball top 10 \n" +
-                      "   4. Students ball top 5 \n" +
-                      "   5. Chiqish \n" +
-                      " Tanlang (1 , 2 , 3 , 4 or 5) : ");
-        var sorov = Convert.ToInt32(Console.ReadLine());
-        
-        switch (sorov)
+        Console.WriteLine("\n  Student Ma'lumotlari \n");
+        var students = context.Students.ToList();
+        var subjects = context.Subjects.ToList();
+
+        foreach (var student in students)
         {
+            var cityName = "Noma'lum";
+            var subjectName = subjects.FirstOrDefault()?.Name ?? "Noma'lum";
 
-            case 1: 
-            {
-                Console.WriteLine("\n Student Ma'lumotlari!!! \n");
-  
-                foreach (var student in students)
-                {                                                                                                       
-                    var cityName = "Noma'lum";
-                    var subjectName = "Noma'lum";
-
-                 
-
-                    foreach (var s in subjects)
-                    {
-                       
-                            subjectName = s.Name;
-                            break;
-                    }
-                    
-                    Console.WriteLine($" Id: {student.Id} \n" +
-                                      $" Name: {student.Name} \n" +
-                                      $" City: {cityName} \n" +
-                                      $" DateOfBirth: {student.DateOfBirth} \n" +
-                                      $" Gender: {student.Gender} \n" +
-                                      $" GradeLevel: {student.GradeLevel} sinf/kurs \n" +
-                                      $" Subject :  {subjectName} \n" +
-                                      $" CreatedDate: {student.CreatedDate} \n");
-
-                    Console.WriteLine("---------------------------------------\n");
-                }
-
-                break;
-            } 
-         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case 2:
-            {
-                Console.WriteLine("\nTeacher Ma'lumotlari!!!\n");
-
-                foreach (var teacher in teachers)
-                {
-                    var cityName = "Noma'lum";
-                    var subjectName = "Noma'lum";
-
-                 
-
-                    foreach (var sub in subjects)
-                    { 
-                        if (teacher.Id == sub.Id) // subjectga tegishli
-                        {
-                            subjectName = sub.Name;
-                            break;
-                        }
-                    }
-
-
-
-                    Console.WriteLine($" Id: {teacher.Id} \n" +
-                                      $" Name: {teacher.Name} \n" +
-                                      $" City: {cityName} \n" +
-                                      $" DateOfBirth: {teacher.DateOfBirth} \n" +
-                                      $" Gender: {teacher.Gender} \n" +
-                                      $" Subject: {subjectName} \n" +
-                                      $" CreatedDate: {teacher.CreatedDate} \n");
-
-                    Console.WriteLine("---------------------------------------\n");
-                }
-
-                break;
-            }
-            
-         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case 3:
-            {
-                Console.WriteLine("\n Top 10 Students by Mark:\n");
-                      var top10 =   studentsSubjects
-                    .OrderByDescending(s => s.Mark)
-                    .Take(10);
-
-                
-                foreach (var item in  top10)
-                {
-                    Console.WriteLine($"ID: {item.Id}, StudentId: {item.StudentId}," +
-                                      $" SubjectId: {item.SubjectId}, Mark: {item.Mark}," +
-                                      $" CreatedDate: {item.CreatedDate}, IsDeleted: {item.IsDeleted}");
-
-                    Console.WriteLine("---------------------------------------\n");
-                }                                                                                                       
-                                                                                                                        
-                break;                                                                                                  
-            }   
-
-            case 4:
-            {
-                Console.WriteLine("\n Top 5 Students by Mark:\n");
-                var top5 = studentsSubjects
-                    .OrderByDescending(s => s.Mark)
-                    .Take(5);
-                 
-                foreach (StudentsSubjects res in top5)
-                {
-                    Console.WriteLine($"ID: {res.Id}, StudentId: {res.StudentId}, " +
-                                      $"SubjectId: {res.SubjectId}, Mark: {res.Mark}, " +
-                                      $"CreatedDate: {res.CreatedDate}, " +
-                                      $"IsDeleted: {res.IsDeleted}");
-        
-                    Console.WriteLine("---------------------------------------\n");
-                }
-
-                break;
-            }
-
-        
-         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            case 5:
-            {
-                Console.WriteLine("Dasturdan chiqish...");
-                return; 
-            }
-
-            default:
-            {
-                Console.WriteLine("Bunday menu yo‘q!");
-                break;
-            }
+            Console.WriteLine($" Id: {student.Id} \n" +
+                              $" Name: {student.Name} \n" +
+                              $" City: {cityName} \n" +
+                              $" DateOfBirth: {student.DateOfBirth} \n" +
+                              $" Gender: {student.Gender} \n" +
+                              $" GradeLevel: {student.GradeLevel} \n" +
+                              $" Subject: {subjectName} \n" +
+                              $" CreatedDate: {student.CreatedDate} \n");
+            Console.WriteLine("---------------------------------------\n");
         }
+                                                                                                                        
+        Console.WriteLine("\n  Teacher Ma'lumotlari \n");                                                               
+        var teachers = context.Teachers.ToList();                                                          
+                                                                                                                        
+        foreach (var teacher in teachers)
+        {
+            var cityName = "Noma'lum";
+            var subjectName = subjects.FirstOrDefault(s => s.Id == teacher.Id)?.Name ?? "Noma'lum";
 
-        goto menu;
+            Console.WriteLine($" Id: {teacher.Id} \n" +
+                              $" Name: {teacher.Name} \n" +
+                              $" City: {cityName} \n" +
+                              $" DateOfBirth: {teacher.DateOfBirth} \n" +
+                              $" Gender: {teacher.Gender} \n" +
+                              $" Subject: {subjectName} \n" +
+                              $" CreatedDate: {teacher.CreatedDate} \n");
+            Console.WriteLine("---------------------------------------\n");
+        }
+  
+        Console.WriteLine("\n  Top 10 Students by Mark \n");
+        var top10 = context.StudentsSubjects
+            .OrderByDescending(s => s.Mark)
+            .Take(10)
+            .ToList();
+  
+        foreach (var item in top10)
+        {
+            Console.WriteLine($"ID: {item.Id}, StudentId: {item.StudentId}, " +
+                              $"SubjectId: {item.SubjectId}, Mark: {item.Mark}, " +
+                              $"CreatedDate: {item.CreatedDate}, IsDeleted: {item.IsDeleted}");
+            Console.WriteLine("---------------------------------------\n");
+        }
+  
+        Console.WriteLine("\n  Top 5 Students by Mark \n");
+        var top5 = context.StudentsSubjects
+            .OrderByDescending(s => s.Mark)
+            .Take(5)
+            .ToList();
+    
+        foreach (var item in top5)
+        {
+            Console.WriteLine($"ID: {item.Id}, StudentId: {item.StudentId}, " +
+                              $"SubjectId: {item.SubjectId}, Mark: {item.Mark}, " +
+                              $"CreatedDate: {item.CreatedDate}, IsDeleted: {item.IsDeleted}");
+            Console.WriteLine("---------------------------------------\n");
+        }
+    
+        Console.WriteLine("\n Barcha ma'lumotlar chiqarildi.\n");
     }
-
- } 
- 
+  }
