@@ -117,9 +117,8 @@ public abstract class Program
                 }                                                                                                       
                                                                                                                         
                 break;                                                                                                  
-            }                                                                                                           
-                                                                                                                        
-                                                                                                                                                                                                             
+            }   
+
             case 4:
             {
                 Console.WriteLine("\n Top 5 Students by Mark:\n");
@@ -140,7 +139,7 @@ public abstract class Program
                 break;
             }
 
-            
+        
          ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
             case 5:
             {
